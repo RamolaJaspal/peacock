@@ -11,12 +11,12 @@ on:
         - bar
         - baz
       if: ${{ github.event.inputs.choice == 'foo'}}
-      environment:
-        type: environment
-        description: Select the environment
-      boolean:
-        type: boolean
-        description: True or False
+        environment:
+          type: environment
+          description: Select the environment
+        boolean:
+          type: boolean
+          description: True or False
 
 jobs:
   build:
