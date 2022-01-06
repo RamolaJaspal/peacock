@@ -1,32 +1,33 @@
-name: CI
+name: Mixed inputs
 
 on:
   workflow_dispatch:
     inputs:
-      choice:
+      name:
         type: choice
-        description: Make a choice
-        options:
-        - foo
-        - bar
-        - baz
-      if: ${{ github.event.inputs.choice == 'foo'}}
-        environment:
-          type: environment
-          description: Select the environment
-        boolean:
-          type: boolean
-          description: True or False
+        description: Who to greet
+        options: 
+        - monalisa
+        - cschleiden
+      message:
+        required: true
+      use-emoji:
+        type: boolean
+        description: Include 🎉🤣 emojis
+      environment:
+        type: environment
+    if: ${{ github.event.inputs.test_id_or_group == 'monalisa'}}
+      name2:
+        type: choice2
+        description: Who to greet
+        options: 
+        - monalisa
+        - cschleiden
 
 jobs:
-  build:
+  greet:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
-
-      - name: greet
-        run: | 
-          echo "environment is ${{ github.event.inputs.environment }}"
-          echo "boolean is ${{ github.event.inputs.boolean }}"
-          echo "choice is ${{ github.event.inputs.choice }}"
+    - name: Send greeting
+      run: echo "${{ github.event.inputs.message }} ${{ fromJSON('["", "🥳"]')[github.event.inputs.use-emoji == 'true'] }} ${{ github.event.inputs.name }}"
