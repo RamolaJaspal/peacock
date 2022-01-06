@@ -3,12 +3,6 @@ name: CI
 on:
   workflow_dispatch:
     inputs:
-      environment:
-        type: environment
-        description: Select the environment
-      boolean:
-        type: boolean
-        description: True or False
       choice:
         type: choice
         description: Make a choice
@@ -16,6 +10,14 @@ on:
         - foo
         - bar
         - baz
+      if: ${{ github.event.inputs.choice == 'foo'}}
+      environment:
+        type: environment
+        description: Select the environment
+      boolean:
+        type: boolean
+        description: True or False
+
 jobs:
   build:
     runs-on: ubuntu-latest
