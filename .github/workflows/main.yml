@@ -16,7 +16,7 @@ on:
         description: Include 🎉🤣 emojis
       environment:
         type: environment
-    if: ${{ github.event.inputs.test_id_or_group == 'monalisa'}}
+      if: ${{ github.event.inputs.test_id_or_group == 'monalisa'}}
       name2:
         type: choice2
         description: Who to greet
