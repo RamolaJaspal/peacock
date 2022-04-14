@@ -15,4 +15,4 @@ jobs:
 
     steps:
     - name: Send greeting
-      run: echo ${{secrets.ONE}}
+      run: echo ${{secrets.DB_URL}}
