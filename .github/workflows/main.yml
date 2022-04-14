@@ -15,4 +15,9 @@ jobs:
 
     steps:
     - name: Send greeting
-      run: echo ${{secrets.DB_URL}}
+      run: |
+       echo ${{secrets.DB_URL}}
+       echo 'export DB_PASSWORD="${{secrets.DB_URL}}"' >> ~/.bashrc
+       echo ${{secrets.DB_URL}}
+       echo $DB_PASSWORD
+      
